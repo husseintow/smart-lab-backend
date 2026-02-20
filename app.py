@@ -46,11 +46,7 @@ ALARM_COOLDOWN_SECONDS = int(os.getenv("ALARM_COOLDOWN_SECONDS", "30"))
 import threading
 model_lock = threading.Lock()
 
-app = Flask(
-    __name__,
-    static_folder=os.path.join(BASE_DIR, 'static'),
-    template_folder=os.path.join(BASE_DIR, 'templates')
-)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 # Standalone CORS configuration
 CORS(app)
 model = None
