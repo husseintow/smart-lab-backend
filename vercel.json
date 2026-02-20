@@ -9,8 +9,7 @@
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/static/$1",
-      "continue": true
+      "dest": "/static/$1"
     },
     {
       "src": "/(.*)",
