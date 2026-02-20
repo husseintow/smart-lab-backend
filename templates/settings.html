@@ -1,0 +1,93 @@
+﻿{% extends "base.html" %}
+{% block title %}Settings | Security Command{% endblock %}
+{% block content %}
+<header style="margin-bottom: 32px;">
+  <h2 style="margin-bottom: 8px;">System Diagnostics & Control</h2>
+  <p class="muted">Manage device targets, notification channels, and neural engine health.</p>
+</header>
+
+<div class="grid grid-2">
+  <div class="card">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+      </svg>
+      <h3 style="margin: 0;">Device Management</h3>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label class="metric-label" style="display: block; margin-bottom: 8px;">Active Target Device ID</label>
+      <input id="deviceId" value="esp32_lab_1"
+        style="width: 100%; background: var(--glass-bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; color: #fff; font-family: inherit; font-size: 14px; outline: none; transition: border-color 0.2s;">
+    </div>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 0;">
+      <button class="btn btn-success" onclick="armWithDevice()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        ARM
+      </button>
+      <button class="btn btn-danger" onclick="disarmWithDevice()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+        </svg>
+        DISARM
+      </button>
+      <button class="btn btn-outline" onclick="alarmTestWithDevice()" style="grid-column: span 2;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        TRIGGER HARDWARE TEST
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+      </svg>
+      <h3 style="margin: 0;">External Integrations</h3>
+    </div>
+    <p class="muted" style="font-size: 13px; line-height: 1.6; margin-bottom: 24px;">
+      Telegram notifications are dynamically routed based on environment variables.
+      Ensure <code>BOT_TOKEN</code> is set for production alerts.
+    </p>
+    <button class="btn btn-primary" style="width: 100%;" onclick="testNotification()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+      SEND TEST TELEGRAM
+    </button>
+  </div>
+</div>
+
+<div class="card" style="padding: 0; overflow: hidden; border-color: rgba(255,255,255,0.05);">
+  <div
+    style="padding: 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.1);">
+    <h3 style="margin: 0; font-size: 16px;">Diagnostic Console</h3>
+    <div class="row" style="gap: 8px;">
+      <button class="btn btn-outline" style="padding: 6px 14px; font-size: 12px;" onclick="health()">Health
+        Check</button>
+      <button class="btn btn-outline" style="padding: 6px 14px; font-size: 12px;" onclick="state()">Neural
+        State</button>
+      <button class="btn btn-outline" style="padding: 6px 14px; font-size: 12px; color: var(--muted);"
+        onclick="clearConsole()">Clear</button>
+    </div>
+  </div>
+  <div id="outputBox"
+    style="height: 300px; padding: 20px; font-family: 'Consolas', 'Monaco', monospace; font-size: 13px; line-height: 1.5; color: #a7f3d0; overflow-y: auto; background: #010409;">
+    <div style="color: var(--muted); opacity: 0.5;">// Waiting for diagnostic commands...</div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}

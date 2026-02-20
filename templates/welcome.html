@@ -1,0 +1,41 @@
+﻿{% extends "base.html" %}
+{% block title %}Welcome | Smart Lab Security{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Secure Your Innovation.</h1>
+  <p>
+    An intelligent IoT ecosystem for real-time monitoring, machine learning-driven intrusion detection, and active defense protocols.
+  </p>
+  <div class="row" style="justify-content: center;">
+    <a class="btn btn-primary" href="{{ url_for('page_dashboard') }}">Enter Command Center</a>
+    <a class="btn btn-outline" href="{{ url_for('page_events') }}">Audit Logs</a>
+  </div>
+</section>
+
+<div class="grid grid-3">
+  <div class="card">
+    <div style="color: var(--primary); margin-bottom: 16px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+    </div>
+    <h3>Edge Nodes</h3>
+    <p class="muted">High-precision ESP32 sensors monitor movement and entry points with 24/7 reliability.</p>
+  </div>
+
+  <div class="card">
+    <div style="color: var(--accent); margin-bottom: 16px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </div>
+    <h3>Neural Defense</h3>
+    <p class="muted">Decision Tree logic learns patterns and differentiates between authorized staff and intruders.</p>
+  </div>
+
+  <div class="card">
+    <div style="color: var(--success); margin-bottom: 16px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    </div>
+    <h3>Active Response</h3>
+    <p class="muted">Instant alerts via Telegram and hardware sirens ensure zero-delay response to threats.</p>
+  </div>
+</div>
+{% endblock %}
+

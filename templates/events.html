@@ -1,0 +1,62 @@
+﻿{% extends "base.html" %}
+{% block title %}History | Security Command{% endblock %}
+{% block content %}
+<header style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-end;">
+  <div>
+    <h2 style="margin-bottom: 8px;">Audit Logs</h2>
+    <p class="muted">Complete history of security events and classifications.</p>
+  </div>
+  <div class="row">
+    <button class="btn btn-outline" onclick="loadEvents()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        style="margin-right: 8px;">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <polyline points="1 20 1 14 7 14"></polyline>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+      </svg>
+      Refresh
+    </button>
+  </div>
+</header>
+
+<div class="card" style="padding: 16px;">
+  <div class="row" style="width: 100%;">
+    <div style="flex: 1;">
+      <input id="searchInput" placeholder="Search by device, time, or sensor..." oninput="renderFiltered()"
+        style="width: 100%; background: var(--glass-bg); border: 1px solid var(--border); padding: 10px 16px; border-radius: 12px; color: #fff;">
+    </div>
+    <div class="row">
+      <span class="muted" style="font-size: 13px;">View:</span>
+      <select id="limitSel" onchange="loadEvents()"
+        style="background: var(--glass-bg); border: 1px solid var(--border); color: #fff; padding: 10px; border-radius: 12px;">
+        <option value="50">50 rows</option>
+        <option value="100" selected>100 rows</option>
+        <option value="200">200 rows</option>
+        <option value="500">500 rows</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="padding: 0;">
+  <div class="table-wrap">
+    <table id="eventsTable">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Device Node</th>
+          <th>Sensing Data</th>
+          <th>Type</th>
+          <th>Armed</th>
+          <th>AI Prediction</th>
+          <th>Human Label</th>
+          <th style="text-align: right;">Management</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/events.js') }}"></script>
+{% endblock %}
