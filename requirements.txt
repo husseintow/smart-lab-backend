@@ -4,3 +4,4 @@ scikit-learn==1.5.1
 requests==2.32.3
 gunicorn==22.0.0
 flask-cors==4.0.1
+whitenoise==6.6.0

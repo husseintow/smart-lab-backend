@@ -9,6 +9,7 @@ import requests
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from sklearn.tree import DecisionTreeClassifier
+from whitenoise import WhiteNoise
 
 # =====================================================
 # Configuration
@@ -50,6 +51,10 @@ app = Flask(__name__,
             static_url_path='/static', 
             static_folder='static', 
             template_folder='templates')
+
+# Wrap the WSGI app with WhiteNoise
+app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/', prefix='static/')
+
 # Standalone CORS configuration
 CORS(app)
 model = None
