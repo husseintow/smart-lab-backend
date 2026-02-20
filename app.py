@@ -49,11 +49,10 @@ model_lock = threading.Lock()
 app = Flask(
     __name__,
     static_folder=os.path.join(BASE_DIR, 'static'),
-    template_folder=os.path.join(BASE_DIR, 'templates'),
-    static_url_path='/static'
+    template_folder=os.path.join(BASE_DIR, 'templates')
 )
-# Production-ready CORS configuration
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+# Standalone CORS configuration
+CORS(app)
 model = None
 model_trained_at = None
 
@@ -472,7 +471,7 @@ def classify_event(hour: int, motion: int, door: int, armed: int, sensor_code: i
 @app.route("/")
 def page_welcome():
     """Root route renders the welcome interface."""
-    return render_template("welcome.html")
+    return render_template("index.html")
 
 
 @app.get("/dashboard")
