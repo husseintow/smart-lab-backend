@@ -34,8 +34,8 @@ API_KEY = os.getenv("API_KEY", "lab_2026_secure_key")
 DEFAULT_DEVICE_ID = os.getenv("DEFAULT_DEVICE_ID", "esp32_lab_1")
 
 # Optional Telegram - Using provided defaults if Env Var is missing
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "7979350204:AAEej9YgmgdITBpggrsUQst3GrbnjxP5a2Q")
-TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "-1002699255749")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 
 # Security policy window
 OFF_HOURS_START = int(os.getenv("OFF_HOURS_START", "18"))
